@@ -2,7 +2,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    database: mysql
+      database: mysql
+      dialect: org.hibernate.dialect.MySQL57Dialect
+      connection:
+        characterEncoding: utf-8
   datasource:
     url: jdbc:mysql://localhost:3306/miniautorizador
     username: root
