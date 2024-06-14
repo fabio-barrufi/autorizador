@@ -9,6 +9,4 @@ import java.util.Optional;
 @Repository
 public interface CartoesRepository extends JpaRepository<CartaoModel, String> {
     Optional<CartaoModel> findByNumeroCartao(String numeroCartao);
-
-    Boolean existsByNumeroCartao(String numeroCartao);
 }
