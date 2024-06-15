@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @RequiredArgsConstructor
@@ -39,6 +38,7 @@ public class CartoesControllerImpl implements CartoesController {
 
     @Override
     public ResponseEntity<BigDecimal> consultarSaldoCartao(String numeroCartao) {
+        validarCampoCartao(numeroCartao);
         try {
             return new ResponseEntity<>(cartoesUseCase.consultarSaldoCartao(numeroCartao), HttpStatus.OK);
         } catch (CartaoInexistenteException ex) {
