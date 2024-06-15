@@ -27,7 +27,8 @@ public class TransacoesControllerImpl implements TransacoesController {
         validarCampoCartao(transacaoRequestDTO.getNumeroCartao());
         try {
             transacoesUseCase.efetuarTransacao(transacaoRequestDTO);
-            return ResponseEntity.ok(TransacaoResponseEnum.OK);
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(TransacaoResponseEnum.OK);
         } catch (SaldoInsuficienteException ex) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
                     .body(TransacaoResponseEnum.SALDO_INSUFICIENTE);
