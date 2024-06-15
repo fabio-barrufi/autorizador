@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.miniautorizador.data.dtos.request.CartaoRequestDTO;
 import com.miniautorizador.domain.usecase.CartoesUseCase;
-import helpers.CartaoMock;
 import com.miniautorizador.entrypoint.controller.impl.CartoesControllerImpl;
 import com.miniautorizador.infrastructure.ApiConstants;
+import helpers.CartaoMock;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -74,7 +74,9 @@ class CartoesControllerTest {
     void consultarSaldoCartao() throws Exception {
         String path = baseUrl + "/" + numeroCartao;
 
-        var mvcResult = mockMvc.perform(
+        var mvcResult =
+                mockMvc
+                        .perform(
                         get(path)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
