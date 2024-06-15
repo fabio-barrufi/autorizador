@@ -30,6 +30,8 @@ public interface TransacoesController {
                     @ApiResponse(responseCode = "200", description = ApiResponseConstants.STATUS_200_OK,
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     examples = @ExampleObject(value = "OK"))),
+                    @ApiResponse(responseCode = "400", description = ApiResponseConstants.STATUS_400_BAD_REQUEST,
+                            content = @Content()),
                     @ApiResponse(responseCode = "422", description = ApiResponseConstants.STATUS_422_UNPROCESSABLE_ENTITY,
                             content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                                     examples = @ExampleObject(value = "CARTAO_INEXISTENTE")))

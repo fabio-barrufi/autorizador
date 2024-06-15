@@ -34,6 +34,8 @@ public interface CartoesController {
             value = {
                     @ApiResponse(responseCode = "201", description = ApiResponseConstants.STATUS_201_CREATED,
                             content = @Content(schema = @Schema(implementation = CartaoResponseDTO.class))),
+                    @ApiResponse(responseCode = "400", description = ApiResponseConstants.STATUS_400_BAD_REQUEST,
+                            content = @Content()),
                     @ApiResponse(responseCode = "422", description = ApiResponseConstants.STATUS_422_UNPROCESSABLE_ENTITY,
                             content = @Content(schema = @Schema(implementation = CartaoResponseDTO.class)))
             })
@@ -47,6 +49,8 @@ public interface CartoesController {
                     @ApiResponse(responseCode = "200", description = ApiResponseConstants.STATUS_200_OK,
                             content = @Content(schema = @Schema(implementation = CartaoResponseDTO.class),
                                     examples = @ExampleObject(value = "495.15"))),
+                    @ApiResponse(responseCode = "400", description = ApiResponseConstants.STATUS_400_BAD_REQUEST,
+                            content = @Content()),
                     @ApiResponse(responseCode = "404", description = ApiResponseConstants.STATUS_404_NOT_FOUND,
                             content = @Content(schema = @Schema())),
 
