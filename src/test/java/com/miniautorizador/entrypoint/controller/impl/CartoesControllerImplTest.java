@@ -39,6 +39,7 @@ class CartoesControllerImplTest {
 
     private final String numeroCartao = "6549873025634503";
     private final String numeroCartaoInvalido = "abc";
+    private final String senhaInvalida = "123";
 
     @BeforeEach
     void setup(){
@@ -60,9 +61,19 @@ class CartoesControllerImplTest {
     }
 
     @Test
-    void criarCartaoThrowsCampoInvalidoException() {
+    void criarCartaoComNumeroCartaoInvalidoThrowsCampoInvalidoException() {
         CartaoRequestDTO cartaoRequestDTO = CartaoMock.cartaoRequestDTOMock();
         cartaoRequestDTO.setNumeroCartao(numeroCartaoInvalido);
+
+        assertThrows(CampoInvalidoException.class, () -> {
+            controller.criarCartao(cartaoRequestDTO);
+        });
+    }
+
+    @Test
+    void criarCartaoComSenhaInvalidaThrowsCampoInvalidoException() {
+        CartaoRequestDTO cartaoRequestDTO = CartaoMock.cartaoRequestDTOMock();
+        cartaoRequestDTO.setSenha(senhaInvalida);
 
         assertThrows(CampoInvalidoException.class, () -> {
             controller.criarCartao(cartaoRequestDTO);
