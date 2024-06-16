@@ -8,11 +8,13 @@ import com.miniautorizador.data.models.CartaoModel;
 import com.miniautorizador.domain.boundary.CartoesBoundary;
 import com.miniautorizador.domain.usecase.CartoesUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
+@Log4j2
 @RequiredArgsConstructor
 public class CartoesUseCaseImpl implements CartoesUseCase {
 
@@ -22,11 +24,15 @@ public class CartoesUseCaseImpl implements CartoesUseCase {
     public CartaoResponseDTO criarCartao(CartaoRequestDTO cartaoRequestDTO) {
         verificaSeCartaoJaExiste(cartaoRequestDTO);
 
+        log.info("Realizando a criação de um novo cartão: {}", cartaoRequestDTO.getNumeroCartao());
+
         return cartoesBoundary.criarCartao(cartaoRequestDTO);
     }
 
     @Override
     public BigDecimal consultarSaldoCartao(String numeroCartao) {
+        log.info("Consultando o saldo do cartão: {}", numeroCartao);
+
         return cartoesBoundary.buscarCartaoPeloNumero(numeroCartao)
                 .map(CartaoModel::getSaldo)
                 .orElseThrow(CartaoInexistenteException::new);

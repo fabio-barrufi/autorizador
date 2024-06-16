@@ -8,12 +8,14 @@ import com.miniautorizador.data.models.CartaoModel;
 import com.miniautorizador.domain.boundary.CartoesBoundary;
 import com.miniautorizador.domain.usecase.TransacoesUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
+@Log4j2
 @RequiredArgsConstructor
 public class TransacoesUseCaseImpl implements TransacoesUseCase {
 
@@ -21,6 +23,9 @@ public class TransacoesUseCaseImpl implements TransacoesUseCase {
 
     @Override
     public void efetuarTransacao(TransacaoRequestDTO transacaoRequestDTO) {
+        log.info("Realizando transação para o cartão {} no valor de {}",
+                transacaoRequestDTO.getNumeroCartao(), transacaoRequestDTO.getValor());
+
         cartoesBoundary.buscarCartaoPeloNumero(transacaoRequestDTO.getNumeroCartao())
                 .ifPresentOrElse(cartao -> {
                     verificarSenhaCorreta(cartao, transacaoRequestDTO.getSenhaCartao());
