@@ -49,7 +49,7 @@ public class TransacoesUseCaseImpl implements TransacoesUseCase {
                 .orElseThrow(SaldoInsuficienteException::new);
     }
 
-    private void salvarNovoSaldoCartao(CartaoModel cartao, BigDecimal valor) {
+    private synchronized void salvarNovoSaldoCartao(CartaoModel cartao, BigDecimal valor) {
         BigDecimal novoSaldo = cartao.getSaldo().subtract(valor);
         cartao.setSaldo(novoSaldo);
         cartoesBoundary.salvarCartao(cartao);
